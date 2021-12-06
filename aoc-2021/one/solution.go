@@ -7,13 +7,13 @@ import (
 	"strconv"
 )
 
-func loadData(src string) int[] {
-	
-	var result int[]
-	
+func loadData(src string) []int {
+
+	var result []int
+
 	file, _ := os.Open(src)
 	defer file.Close()
-	
+
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line, _ := strconv.Atoi(scanner.Text())
@@ -23,7 +23,7 @@ func loadData(src string) int[] {
 	return result
 }
 
-func part1(data int[]) int {
+func part1(data []int) int {
 	var increment int = 0
 	var previous int = 0
 	for _, value := range data {
@@ -31,22 +31,26 @@ func part1(data int[]) int {
 			increment++
 		}
 	}
-	return increment - 1 
+	return increment - 1
 }
 
-func part2(data int[]) int {
+func part2(data []int) int {
 	var increment int = 0
-	for i := 1; i+2 < len(data); i = i+1 {
+	for i := 1; i+2 < len(data); i = i + 1 {
 		previous := data[i-1] + data[i] + data[i+1]
 		current := data[i] + data[i+1] + data[i+2]
-		if current > previous { increment++ }
+		if current > previous {
+			increment++
+		}
 	}
 	return increment
 }
 
 func main() {
 	var src string = "input.txt"
-	var data int[] = loadData(src)
+	var data []int = loadData(src)
+
+	fmt.Printf("%v\n", data)
 
 	var solution1 int = part1(data)
 	var solution2 int = part2(data)
