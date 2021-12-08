@@ -28,7 +28,7 @@ func loadData(src string) [1000][12]int {
 	return result
 }
 
-func part1 () {
+func part1() {
 	data := loadData("input.txt")
 	var nb_col int = len(data[0])
 	var nb_line int = len(data)
@@ -50,6 +50,27 @@ func part1 () {
 	}
 
 	fmt.Println(decoded_gamma)
+}
+
+func filterData(data [][]int, value, pos int) {
+	var result [][]int
+
+	for i := 0; i < len(data); i++ {
+		if pos >= len(data[i]) {
+			fmt.Println("%v is too small", data[i])
+			break
+		}
+
+		if (data[i][pos] == value) {
+			result = append(result, data[i])
+		}
+	}
+
+	return result
+}
+
+func part2(data [][]int) int {
+	filterData(data, 1, 0) // filter all values with a 1 at position 0
 }
 
 func main () {
