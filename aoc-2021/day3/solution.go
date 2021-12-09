@@ -52,6 +52,9 @@ func part1 () {
 	fmt.Println(decoded_gamma)
 }
 
+func part2(data [][]int) {
+
+
 func main () {
 	part1()
 }
